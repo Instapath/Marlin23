@@ -28,6 +28,10 @@
  * G4: Dwell S<seconds> or P<milliseconds>
  */
 void GcodeSuite::G4() {
+  
+  JOYSTICK_ENABLE = true;
+  return;
+  
   millis_t dwell_ms = 0;
 
   if (parser.seenval('P')) dwell_ms = parser.value_millis(); // milliseconds to wait

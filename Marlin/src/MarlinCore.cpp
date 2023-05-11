@@ -334,6 +334,8 @@ bool printer_busy() {
   return planner.movesplanned() || printingIsActive();
 }
 
+bool JOYSTICK_ENABLE = true;
+
 /**
  * A Print Job exists when the timer is running or SD is printing
  */

@@ -122,6 +122,11 @@ Joystick joystick;
 #if ENABLED(POLL_JOG)
 
   void Joystick::inject_jog_moves() {
+    if (JOYSTICK_ENABLE == false)
+    {
+      return;
+    }
+    
     // Recursion barrier
     static bool injecting_now; // = false;
     if (injecting_now) return;

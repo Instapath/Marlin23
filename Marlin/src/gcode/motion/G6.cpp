@@ -22,7 +22,7 @@
 
 #include "../../inc/MarlinConfig.h"
 
-#if ENABLED(DIRECT_STEPPING)
+//#if ENABLED(DIRECT_STEPPING)  // tps: had to force
 
 #include "../../feature/direct_stepping.h"
 
@@ -33,6 +33,10 @@
  * G6: Direct Stepper Move
  */
 void GcodeSuite::G6() {
+  
+    JOYSTICK_ENABLE = false;
+    return;
+
   // TODO: feedrate support?
   if (parser.seen('R'))
     planner.last_page_step_rate = parser.value_ulong();
