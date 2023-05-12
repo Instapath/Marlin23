@@ -915,15 +915,15 @@
 
 //#define SENSORLESS_BACKOFF_MM  { 2, 2, 0 }  // (linear=mm, rotational=°) Backoff from endstops before sensorless homing
 
-#define HOMING_BUMP_MM      { 5, 5, 2 }       // (linear=mm, rotational=°) Backoff from endstops after first bump
-#define HOMING_BUMP_DIVISOR { 2, 2, 4 }       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
+#define HOMING_BUMP_MM      { 2, 2, 0.5 }       // (linear=mm, rotational=°) Backoff from endstops after first bump
+#define HOMING_BUMP_DIVISOR { 2, 2, 2 }       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 
-//#define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (linear=mm, rotational=°) Backoff from endstops after homing
+#define HOMING_BACKOFF_POST_MM { 35, 35, 0 }  // (linear=mm, rotational=°) Backoff from endstops after homing
 //#define XY_COUNTERPART_BACKOFF_MM 0         // (mm) Backoff X after homing Y, and vice-versa
 
-//#define QUICK_HOME                          // If G28 contains XY do a diagonal move first
+#define QUICK_HOME                          // If G28 contains XY do a diagonal move first
 //#define HOME_Y_BEFORE_X                     // If G28 contains XY home Y before X
-//#define HOME_Z_FIRST                        // Home Z first. Requires a real endstop (not a probe).
+#define HOME_Z_FIRST                        // Home Z first. Requires a real endstop (not a probe).
 //#define CODEPENDENT_XY_HOMING               // If X/Y can't home without homing Y/X first
 
 // @section bltouch
@@ -1208,7 +1208,7 @@
  * Enable DISABLE_IDLE_* to shut down axis steppers after an idle period.
  * The default timeout duration can be overridden with M18 and M84. Set to 0 for No Timeout.
  */
-#define DEFAULT_STEPPER_TIMEOUT_SEC 120
+#define DEFAULT_STEPPER_TIMEOUT_SEC 5
 #define DISABLE_IDLE_X
 #define DISABLE_IDLE_Y
 #define DISABLE_IDLE_Z    // Disable if the nozzle could fall onto your printed part!
@@ -1860,7 +1860,7 @@
    *
    * :[ 'LCD', 'ONBOARD', 'CUSTOM_CABLE' ]
    */
-  //#define SDCARD_CONNECTION LCD
+  #define SDCARD_CONNECTION ONBOARD
 
   // Enable if SD detect is rendered useless (e.g., by using an SD extender)
   //#define NO_SD_DETECT
@@ -2836,7 +2836,7 @@
  */
 #if HAS_TRINAMIC_CONFIG || HAS_TMC26X
 
-  #define HOLD_MULTIPLIER    0.5  // Scales down the holding current from run current
+  #define HOLD_MULTIPLIER    0.1  // Scales down the holding current from run current
 
   /**
    * Interpolate microsteps to 256
@@ -2845,7 +2845,7 @@
   #define INTERPOLATE      true
 
   #if AXIS_IS_TMC_CONFIG(X)
-    #define X_CURRENT       800        // (mA) RMS current. Multiply by 1.414 for peak current.
+    #define X_CURRENT       350        // (mA) RMS current. Multiply by 1.414 for peak current.
     #define X_CURRENT_HOME  X_CURRENT  // (mA) RMS current for sensorless homing
     #define X_MICROSTEPS     16        // 0..256
     #define X_RSENSE          0.11     // Multiplied x1000 for TMC26X
@@ -2865,7 +2865,7 @@
   #endif
 
   #if AXIS_IS_TMC_CONFIG(Y)
-    #define Y_CURRENT       800
+    #define Y_CURRENT       350
     #define Y_CURRENT_HOME  Y_CURRENT
     #define Y_MICROSTEPS     16
     #define Y_RSENSE          0.11
@@ -2885,7 +2885,7 @@
   #endif
 
   #if AXIS_IS_TMC_CONFIG(Z)
-    #define Z_CURRENT       800
+    #define Z_CURRENT       500
     #define Z_CURRENT_HOME  Z_CURRENT
     #define Z_MICROSTEPS     16
     #define Z_RSENSE          0.11
@@ -3109,9 +3109,9 @@
    * Set *_SERIAL_TX_PIN and *_SERIAL_RX_PIN to match for all drivers
    * on the same serial port, either here or in your board's pins file.
    */
-  //#define  X_SLAVE_ADDRESS 0
-  //#define  Y_SLAVE_ADDRESS 0
-  //#define  Z_SLAVE_ADDRESS 0
+  #define  X_SLAVE_ADDRESS 0
+  #define  Y_SLAVE_ADDRESS 2
+  #define  Z_SLAVE_ADDRESS 1
   //#define X2_SLAVE_ADDRESS 0
   //#define Y2_SLAVE_ADDRESS 0
   //#define Z2_SLAVE_ADDRESS 0
@@ -4098,21 +4098,29 @@ extern bool JOYSTICK_ENABLE;
   //#define INVERT_JOY_Z  // Enable if Z direction is reversed
 
   // Use M119 with JOYSTICK_DEBUG to find reasonable values after connecting:
-  // #define JOY_X_LIMITS { 5600, 8190-100, 8190+100, 10800 } // min, deadzone start, deadzone end, max
-  // #define JOY_Y_LIMITS { 5600, 8250-100, 8250+100, 11000 }
-  // #define JOY_Z_LIMITS { 4800, 8080-100, 8080+100, 11550 }
+  //joy stick 1 (Philly 10k #1)
+  //#define JOY_X_LIMITS { 0, 8645-1000, 8645+1000, 16368 } // min, deadzone start, deadzone end, max
+  //#define JOY_Y_LIMITS { 0, 8066-1000, 8066+1000, 16368 }
+  //#define JOY_Z_LIMITS { 0, 8081-500, 8081+500, 16368 }
+  //#define JOYSTICK_DEBUG
 
-   //joy stick 2 (Houston 10k)
-  // #define JOY_X_LIMITS { 0, 8233-1000, 8233+1000, 16368 } // min, deadzone start, deadzone end, max
+  //joy stick 2 (Houston 10k)
+  //#define JOY_X_LIMITS { 0, 8233-1000, 8233+1000, 16368 } // min, deadzone start, deadzone end, max
   // #define JOY_Y_LIMITS { 0, 7889-1000, 7889+1000, 16368 }
   // #define JOY_Z_LIMITS { 0, 8262-500, 8262+500, 16368 }
   // #define JOYSTICK_DEBUG
 
-  //joy stick 2 (Philly 10k#2)
-  #define JOY_X_LIMITS { 0, 8935-1000, 8935+1000, 16368 } // min, deadzone start, deadzone end, max
-  #define JOY_Y_LIMITS { 0, 8018-1000, 8018+1000, 16368 }
-  #define JOY_Z_LIMITS { 0, 7956-500, 7956+500, 16368 }
+  //joy stick 3 (Philly 10k#2)
+  //#define JOY_X_LIMITS { 0, 8935-1000, 8935+1000, 16368 } // min, deadzone start, deadzone end, max
+  //#define JOY_Y_LIMITS { 0, 8018-1000, 8018+1000, 16368 }
+  //#define JOY_Z_LIMITS { 0, 7956-500, 7956+500, 16368 }
   //#define JOYSTICK_DEBUG
+
+    //joy stick 3 (Philly 10k#2b)
+  #define JOY_X_LIMITS { 0, 36338-7000, 36338+7000, 65535 } // min, deadzone start, deadzone end, max
+  #define JOY_Y_LIMITS { 0, 32479-7000, 32479+7000, 65535 }
+  #define JOY_Z_LIMITS { 0, 32458-1500, 32458+1500, 65535 }
+  #define JOYSTICK_DEBUG
 #endif
 
 /**
