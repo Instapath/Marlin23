@@ -30,6 +30,7 @@
 void GcodeSuite::G4() {
   
   JOYSTICK_ENABLE = true;
+  Serial.println(F("G4: JOYSTICK_ENABLE: TRUE"));
   return;
   
   millis_t dwell_ms = 0;
