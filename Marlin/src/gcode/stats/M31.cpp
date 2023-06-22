@@ -30,6 +30,11 @@
  * M31: Get the time since the start of SD Print (or last M109)
  */
 void GcodeSuite::M31() {
+
+    JOYSTICK_ENABLE = false;
+    Serial.println(F("M31: JOYSTICK_ENABLE: FALSE"));
+    return;
+
   char buffer[22];
   duration_t(print_job_timer.duration()).toString(buffer);
 

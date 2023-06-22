@@ -33,11 +33,6 @@
  * G6: Direct Stepper Move
  */
 void GcodeSuite::G6() {
-  
-    JOYSTICK_ENABLE = false;
-    Serial.println(F("G6: JOYSTICK_ENABLE: FALSE"));
-    return;
-
   // TODO: feedrate support?
   if (parser.seen('R'))
     planner.last_page_step_rate = parser.value_ulong();
@@ -64,4 +59,5 @@ void GcodeSuite::G6() {
   reset_stepper_timeout();
 }
 
-//#endif // DIRECT_STEPPING
+#endif // DIRECT_STEPPING
+
