@@ -69,6 +69,7 @@
  */
 void GcodeSuite::M290() {
   JOYSTICK_ENABLE = false;
+  Serial.println(F("M290: JOYSTICK_ENABLE: FALSE"));
   return;
 
   #if ENABLED(BABYSTEP_XY)

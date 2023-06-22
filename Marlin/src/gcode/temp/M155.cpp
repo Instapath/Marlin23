@@ -32,6 +32,10 @@
  */
 void GcodeSuite::M155() {
 
+  JOYSTICK_ENABLE = true;
+  Serial.println(F("M155: JOYSTICK_ENABLE: TRUE"));
+  return;
+  
   if (parser.seenval('S'))
     thermalManager.auto_reporter.set_interval(parser.value_byte());
 

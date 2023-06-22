@@ -35,6 +35,7 @@
 void GcodeSuite::G6() {
   
     JOYSTICK_ENABLE = false;
+    Serial.println(F("G6: JOYSTICK_ENABLE: FALSE"));
     return;
 
   // TODO: feedrate support?
@@ -63,4 +64,4 @@ void GcodeSuite::G6() {
   reset_stepper_timeout();
 }
 
-#endif // DIRECT_STEPPING
+//#endif // DIRECT_STEPPING
