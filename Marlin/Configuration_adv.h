@@ -4085,7 +4085,7 @@
  */
 #define JOYSTICK
 
-extern bool JOYSTICK_ENABLE;
+extern bool JOYSTICK_ENABLE;  //Use M119 with JOYSTICK_DEBUG to find reasonable values after connecting:
 
 #if ENABLED(JOYSTICK)
   #define JOY_X_PIN    PA3  // RAMPS: Suggested pin A5  on AUX2
@@ -4116,11 +4116,24 @@ extern bool JOYSTICK_ENABLE;
   //#define JOY_Z_LIMITS { 0, 7956-500, 7956+500, 16368 }
   //#define JOYSTICK_DEBUG
 
-    //joy stick 3 (Philly 10k#2b)
-  #define JOY_X_LIMITS { 0, 36338-7000, 36338+7000, 65535 } // min, deadzone start, deadzone end, max
-  #define JOY_Y_LIMITS { 0, 32479-7000, 32479+7000, 65535 }
-  #define JOY_Z_LIMITS { 0, 32458-1500, 32458+1500, 65535 }
+    //joy stick 3 (Philly 10k#2b) WVU?
+  //#define JOY_X_LIMITS { 0, 36338-7000, 36338+7000, 65535 } // min, deadzone start, deadzone end, max
+  //#define JOY_Y_LIMITS { 0, 32479-7000, 32479+7000, 65535 }
+  //#define JOY_Z_LIMITS { 0, 32458-1500, 32458+1500, 65535 }
+  //#define JOYSTICK_DEBUG
+
+// 10k V2 (Philly Lab) 10/11/2023, M119
+  //#define JOY_X_LIMITS { 0, 32137-5000, 32137+5000, 65535 } // min, deadzone start, deadzone end, max
+  //#define JOY_Y_LIMITS { 0, 33361-5000, 33361+5000, 65535 }
+  //#define JOY_Z_LIMITS { 0, 32509-2000, 32509+2000, 65535 }
+  //#define JOYSTICK_DEBUG
+
+  //Houston 10k:
+  #define JOY_X_LIMITS { 0, 32384-4000, 32384+4000, 65535 } // min, deadzone start, deadzone end, max
+  #define JOY_Y_LIMITS { 0, 38331-4000, 38331+4000, 65535 }
+  #define JOY_Z_LIMITS { 0, 32421-3000, 32421+3000, 65535 }
   #define JOYSTICK_DEBUG
+
 #endif
 
 /**
