@@ -2847,7 +2847,8 @@
   #if AXIS_IS_TMC_CONFIG(X)
     #define X_CURRENT       350        // (mA) RMS current. Multiply by 1.414 for peak current.
     #define X_CURRENT_HOME  X_CURRENT  // (mA) RMS current for sensorless homing
-    #define X_MICROSTEPS     16        // 0..256
+    //#define X_MICROSTEPS     16        // 0..256
+    #define X_MICROSTEPS     16       // 0..256
     #define X_RSENSE          0.11     // Multiplied x1000 for TMC26X
     #define X_CHAIN_POS      -1        // -1..0: Not chained. 1: MCU MOSI connected. 2: Next in chain, ...
     //#define X_INTERPOLATE  true      // Enable to override 'INTERPOLATE' for the X axis
@@ -2867,6 +2868,7 @@
   #if AXIS_IS_TMC_CONFIG(Y)
     #define Y_CURRENT       350
     #define Y_CURRENT_HOME  Y_CURRENT
+    //#define Y_MICROSTEPS     16
     #define Y_MICROSTEPS     16
     #define Y_RSENSE          0.11
     #define Y_CHAIN_POS      -1
@@ -4123,16 +4125,16 @@ extern bool JOYSTICK_ENABLE;  //Use M119 with JOYSTICK_DEBUG to find reasonable 
   //#define JOYSTICK_DEBUG
 
 // 10k V2 (Philly Lab) 10/11/2023, M119
-  //#define JOY_X_LIMITS { 0, 32137-5000, 32137+5000, 65535 } // min, deadzone start, deadzone end, max
-  //#define JOY_Y_LIMITS { 0, 33361-5000, 33361+5000, 65535 }
-  //#define JOY_Z_LIMITS { 0, 32509-2000, 32509+2000, 65535 }
-  //#define JOYSTICK_DEBUG
+  #define JOY_X_LIMITS { 0, 32137-5000, 32137+5000, 65535 } // min, deadzone start, deadzone end, max
+  #define JOY_Y_LIMITS { 0, 33361-5000, 33361+5000, 65535 }
+  #define JOY_Z_LIMITS { 0, 32509-2000, 32509+2000, 65535 }
+  #define JOYSTICK_DEBUG
 
   //Houston 10k:
-  #define JOY_X_LIMITS { 0, 32384-4000, 32384+4000, 65535 } // min, deadzone start, deadzone end, max
-  #define JOY_Y_LIMITS { 0, 38331-4000, 38331+4000, 65535 }
-  #define JOY_Z_LIMITS { 0, 32421-3000, 32421+3000, 65535 }
-  #define JOYSTICK_DEBUG
+  //#define JOY_X_LIMITS { 0, 32384-4000, 32384+4000, 65535 } // min, deadzone start, deadzone end, max
+  //#define JOY_Y_LIMITS { 0, 38331-4000, 38331+4000, 65535 }
+  //#define JOY_Z_LIMITS { 0, 32421-3000, 32421+3000, 65535 }
+  //#define JOYSTICK_DEBUG
 
 #endif
 

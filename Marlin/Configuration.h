@@ -1212,7 +1212,8 @@
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 500 }
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 2519.685039, 2519.685039, 12598.4252,  500}
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 2519.685039, 2519.685039, 12598.4252,  500} //1/4"-20 lead screw XY, 16 micro step
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 1600, 1600, 12598.4252,  500} //2mm pitch ball screw XY, 32 micro step on XY, 16 microstep on Z
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
@@ -1220,7 +1221,8 @@
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
 //#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }
-#define DEFAULT_MAX_FEEDRATE          { 2.5, 2.5, .25, 25}
+//#define DEFAULT_MAX_FEEDRATE          { 2.5, 2.5, .25, 25}
+#define DEFAULT_MAX_FEEDRATE          { 6, 6, .25, 25}
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1234,7 +1236,8 @@
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
 //#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 10000 }
-#define DEFAULT_MAX_ACCELERATION      { 200, 200, 50, 10000}
+//#define DEFAULT_MAX_ACCELERATION      { 200, 200, 50, 10000}
+#define DEFAULT_MAX_ACCELERATION      { 50, 50, 5, 10000}
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -1759,7 +1762,10 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 5
+
+//#define Z_MAX_POS 5
+#define Z_MAX_POS 15
+
 //#define I_MIN_POS 0
 //#define I_MAX_POS 50
 //#define J_MIN_POS 0
@@ -2218,7 +2224,7 @@
 #endif
 
 // Homing speeds (linear=mm/min, rotational=°/min)
-#define HOMING_FEEDRATE_MM_M { (2.5*60), (2.5*60), (.4*60) }
+#define HOMING_FEEDRATE_MM_M { (6*60), (6*60), (.4*60) }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
