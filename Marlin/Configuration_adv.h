@@ -2596,7 +2596,7 @@
 #define SERIAL_OVERRUN_PROTECTION
 
 // For serial echo, the number of digits after the decimal point
-//#define SERIAL_FLOAT_PRECISION 4
+#define SERIAL_FLOAT_PRECISION 4
 
 /**
  * Set the number of proportional font spaces required to fill up a typical character space.
@@ -2848,7 +2848,7 @@
     #define X_CURRENT       350        // (mA) RMS current. Multiply by 1.414 for peak current.
     #define X_CURRENT_HOME  X_CURRENT  // (mA) RMS current for sensorless homing
     //#define X_MICROSTEPS     16        // 0..256
-    #define X_MICROSTEPS     16       // 0..256
+    #define X_MICROSTEPS     16      // 0..256
     #define X_RSENSE          0.11     // Multiplied x1000 for TMC26X
     #define X_CHAIN_POS      -1        // -1..0: Not chained. 1: MCU MOSI connected. 2: Next in chain, ...
     //#define X_INTERPOLATE  true      // Enable to override 'INTERPOLATE' for the X axis
@@ -4125,16 +4125,28 @@ extern bool JOYSTICK_ENABLE;  //Use M119 with JOYSTICK_DEBUG to find reasonable 
   //#define JOYSTICK_DEBUG
 
 // 10k V2 (Philly Lab) 10/11/2023, M119
-  #define JOY_X_LIMITS { 0, 32137-5000, 32137+5000, 65535 } // min, deadzone start, deadzone end, max
-  #define JOY_Y_LIMITS { 0, 33361-5000, 33361+5000, 65535 }
-  #define JOY_Z_LIMITS { 0, 32509-2000, 32509+2000, 65535 }
-  #define JOYSTICK_DEBUG
+ // #define JOY_X_LIMITS { 0, 32137-5000, 32137+5000, 65535 } // min, deadzone start, deadzone end, max
+  //#define JOY_Y_LIMITS { 0, 33361-5000, 33361+5000, 65535 }
+  //#define JOY_Z_LIMITS { 0, 32509-2000, 32509+2000, 65535 }
+  //#define JOYSTICK_DEBUG
 
   //Houston 10k:
   //#define JOY_X_LIMITS { 0, 32384-4000, 32384+4000, 65535 } // min, deadzone start, deadzone end, max
   //#define JOY_Y_LIMITS { 0, 38331-4000, 38331+4000, 65535 }
   //#define JOY_Z_LIMITS { 0, 32421-3000, 32421+3000, 65535 }
   //#define JOYSTICK_DEBUG
+
+    //Houston new 10k, June 2024
+  //#define JOY_X_LIMITS { 0, 36109-4000, 36109+4000, 65535 } // min, deadzone start, deadzone end, max
+  //#define JOY_Y_LIMITS { 0, 32864-4000, 32864+4000, 65535 }
+  //#define JOY_Z_LIMITS { 0, 31801-3000, 31801+3000, 65535 }
+  //#define JOYSTICK_DEBUG
+
+      //10k #5 (Mei), November 2024
+  #define JOY_X_LIMITS { 0, 32956-4000, 32956+4000, 65535 } // min, deadzone start, deadzone end, max
+  #define JOY_Y_LIMITS { 0, 32652-4000, 32652+4000, 65535 }
+  #define JOY_Z_LIMITS { 0, 32491-3000, 32491+3000, 65535 }
+  #define JOYSTICK_DEBUG
 
 #endif
 

@@ -1213,7 +1213,9 @@
  */
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 500 }
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 2519.685039, 2519.685039, 12598.4252,  500} //1/4"-20 lead screw XY, 16 micro step
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 1600, 1600, 12598.4252,  500} //2mm pitch ball screw XY, 32 micro step on XY, 16 microstep on Z
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 1600, 1600, 3200,  500} //2mm pitch ball screw XY, 16 micro step on XY, 1mm pitch Z, 16 microstep on Z
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 1600, 1600, 12598.4252,  500} //2mm pitch ball screw XY, 16 micro step on XY, 100TPI Z, 16 microstep on Z
+
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
