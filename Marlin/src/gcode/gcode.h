@@ -491,6 +491,10 @@ private:
     static void D(const int16_t dcode);
   #endif
 
+  #if ENABLED(JOYSTICK)
+    static void G299();  // G299: Virtual Joystick Control
+  #endif
+
   static void G0_G1(TERN_(HAS_FAST_MOVES, const bool fast_move=false));
 
   #if ENABLED(ARC_SUPPORT)

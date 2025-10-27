@@ -28,10 +28,15 @@
 
 #if ENABLED(JOYSTICK)
 
+
+
 #include "joystick.h"
 
 #include "../inc/MarlinConfig.h"  // for pins
 #include "../module/planner.h"
+
+xyz_float_t virtual_joystick_values = {0};
+bool virtual_joystick_active = false;
 
 Joystick joystick;
 
@@ -159,6 +164,14 @@ Joystick joystick;
     #if HAS_JOY_ADC_X || HAS_JOY_ADC_Y || HAS_JOY_ADC_Z
       joystick.calculate(norm_jog);
     #endif
+
+    // In inject_jog_moves(), after hardware joystick calculation:
+    if (virtual_joystick_active) {
+      // Combine or override with virtual joystick values
+      norm_jog.x = virtual_joystick_values.x; // Use = to override, or += to combine
+      norm_jog.y = virtual_joystick_values.y;
+      norm_jog.z = virtual_joystick_values.z;
+    }
 
     // Other non-joystick poll-based jogging could be implemented here
     // with "jogging" encapsulated as a more general class.
