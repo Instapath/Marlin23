@@ -4143,9 +4143,15 @@ extern bool JOYSTICK_ENABLE;  //Use M119 with JOYSTICK_DEBUG to find reasonable 
   //#define JOYSTICK_DEBUG
 
       //10k #5 (Mei), November 2024
-  #define JOY_X_LIMITS { 0, 32956-4000, 32956+4000, 65535 } // min, deadzone start, deadzone end, max
-  #define JOY_Y_LIMITS { 0, 32652-4000, 32652+4000, 65535 }
-  #define JOY_Z_LIMITS { 0, 32491-3000, 32491+3000, 65535 }
+  //#define JOY_X_LIMITS { 0, 32956-4000, 32956+4000, 65535 } // min, deadzone start, deadzone end, max
+  //#define JOY_Y_LIMITS { 0, 32652-4000, 32652+4000, 65535 }
+  //#define JOY_Z_LIMITS { 0, 32491-3000, 32491+3000, 65535 }
+  //#define JOYSTICK_DEBUG
+
+        //10k #? (Nova?) Tom's frankenstiein system?, November 2025
+  #define JOY_X_LIMITS { 0, 32400-5000, 32400+5000, 65535 } // min, deadzone start, deadzone end, max
+  #define JOY_Y_LIMITS { 0, 38300-5000, 38300+5000, 65535 }
+  #define JOY_Z_LIMITS { 0, 32400-4000, 32400+4000, 65535 }
   #define JOYSTICK_DEBUG
 
 #endif
