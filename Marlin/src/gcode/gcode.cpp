@@ -100,6 +100,23 @@ relative_t GcodeSuite::axis_relative; // Init in constructor
   xyz_pos_t GcodeSuite::coordinate_system[MAX_COORDINATE_SYSTEMS];
 #endif
 
+#if ENABLED(JOYSTICK)
+extern xyz_float_t virtual_joystick_values;
+extern bool virtual_joystick_active;
+
+void GcodeSuite::G299() {
+  if (parser.seen('E')) {
+    virtual_joystick_active = parser.value_bool();
+  }
+  
+  if (virtual_joystick_active) {
+    if (parser.seen('X')) virtual_joystick_values.x = constrain(parser.value_float(), -1.0f, 1.0f);
+    if (parser.seen('Y')) virtual_joystick_values.y = constrain(parser.value_float(), -1.0f, 1.0f);
+    if (parser.seen('Z')) virtual_joystick_values.z = constrain(parser.value_float(), -1.0f, 1.0f);
+  }
+}
+#endif // JOYSTICK
+
 void GcodeSuite::report_echo_start(const bool forReplay) { if (!forReplay) SERIAL_ECHO_START(); }
 void GcodeSuite::report_heading(const bool forReplay, FSTR_P const fstr, const bool eol/*=true*/) {
   if (forReplay) return;
@@ -455,6 +472,10 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
 
       case 92: G92(); break;                                      // G92: Set current axis position(s)
 
+      #if ENABLED(JOYSTICK)
+        case 299: G299(); break;  // G299: Virtual Joystick Control
+      #endif
+      
       #if ENABLED(CALIBRATION_GCODE)
         case 425: G425(); break;                                  // G425: Perform calibration with calibration cube
       #endif
