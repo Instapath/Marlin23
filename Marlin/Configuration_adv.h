@@ -4093,7 +4093,7 @@ extern bool JOYSTICK_ENABLE;  //Use M119 with JOYSTICK_DEBUG to find reasonable 
   #define JOY_X_PIN    PA3  // RAMPS: Suggested pin A5  on AUX2
   #define JOY_Y_PIN   PA2  // RAMPS: Suggested pin A10 on AUX2
   #define JOY_Z_PIN   PA1  // RAMPS: Suggested pin A12 on AUX2
-  #define JOY_EN_PIN  PC14  // RAMPS: Suggested pin D44 on AUX2
+  #define JOY_EN_PIN  PB5  // RAMPS: Suggested pin D44 on AUX2
 
   //#define INVERT_JOY_X  // Enable if X direction is reversed
   //#define INVERT_JOY_Y  // Enable if Y direction is reversed
@@ -4149,9 +4149,15 @@ extern bool JOYSTICK_ENABLE;  //Use M119 with JOYSTICK_DEBUG to find reasonable 
   //#define JOYSTICK_DEBUG
 
         //10k #? (Nova?) Tom's frankenstiein system?, November 2025
-  #define JOY_X_LIMITS { 0, 32400-5000, 32400+5000, 65535 } // min, deadzone start, deadzone end, max
-  #define JOY_Y_LIMITS { 0, 38300-5000, 38300+5000, 65535 }
-  #define JOY_Z_LIMITS { 0, 32400-4000, 32400+4000, 65535 }
+  // #define JOY_X_LIMITS { 0, 32400-5000, 32400+5000, 65535 } // min, deadzone start, deadzone end, max
+  // #define JOY_Y_LIMITS { 0, 38300-5000, 38300+5000, 65535 }
+  // #define JOY_Z_LIMITS { 0, 32400-4000, 32400+4000, 65535 }
+  // #define JOYSTICK_DEBUG
+
+  // Tom 02/13/2026
+    #define JOY_X_LIMITS { 0, 33200-5000, 33200+5000, 65535 } // min, deadzone start, deadzone end, max
+  #define JOY_Y_LIMITS { 0, 36000-5000, 36000+5000, 65535 }
+  #define JOY_Z_LIMITS { 0, 32000-4000, 32000+4000, 65535 }
   #define JOYSTICK_DEBUG
 
 #endif
